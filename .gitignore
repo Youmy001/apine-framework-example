@@ -1,0 +1,7 @@
+.buildpath
+.project
+.settings
+vendor/*
+/config.ini
+/vendor/
+/test/
