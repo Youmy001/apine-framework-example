@@ -17,7 +17,7 @@ use Apine;
  * Execution Translator
  * Manage Multi-Languages setups
  */
-final class ApplicationTranslator {
+final class Translator {
 	
 	/**
 	 * Instance of the Translation Manager
@@ -62,7 +62,7 @@ final class ApplicationTranslator {
 		//$config = new ApineConfig('config.ini');
 		
 		if (is_null($a_lang_code)) {
-			if (ApplicationConfig::get('localization', 'locale_detection') == "yes") {
+			if (Config::get('localization', 'locale_detection') == "yes") {
 				if (!isset($request_get['language'])) {
 					$language = self::cookie_best();
 					
@@ -74,7 +74,7 @@ final class ApplicationTranslator {
 				}
 				
 				if (!$language) {
-					$language = ApplicationConfig::get('localization', 'locale_default');
+					$language = Config::get('localization', 'locale_default');
 				}
 	
 				self::get_instance()->language = $directory->get_translation($language);
@@ -82,7 +82,7 @@ final class ApplicationTranslator {
 				if (isset($request_get['language'])) {
 					$language = self::request_best();
 				} else {
-					$language = ApplicationConfig::get('localization', 'locale_default');
+					$language = Config::get('localization', 'locale_default');
 				}
 				
 				self::get_instance()->language = $directory->get_translation($language);
@@ -91,7 +91,7 @@ final class ApplicationTranslator {
 			if ($directory->is_exist_language($a_lang_code)) {
 				self::get_instance()->language = $directory->get_translation($a_lang_code);
 			} else {
-				self::get_instance()->language = $directory->get_translation(ApplicationConfig::get('localization', 'locale_default'));
+				self::get_instance()->language = $directory->get_translation(Config::get('localization', 'locale_default'));
 			}
 		}
 		
@@ -109,7 +109,7 @@ final class ApplicationTranslator {
 		
 		$cookie = Apine\Core\Cookie::get('apine_language');
 		
-		if (ApplicationConfig::get('localization', 'locale_use_cookie') === "yes" && $cookie) {
+		if (Config::get('localization', 'locale_use_cookie') === "yes" && $cookie) {
 			$directory = new Apine\Translation\TranslationDirectory();
 			return $directory->is_exist_language($cookie);
 		} else {
@@ -146,7 +146,7 @@ final class ApplicationTranslator {
 		$directory = new Apine\Translation\TranslationDirectory();
 		
 		if (!isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-			return $directory->get_translation(ApplicationConfig::get('localization', 'locale_default'))->get_language()->code;
+			return $directory->get_translation(Config::get('localization', 'locale_default'))->get_language()->code;
 		}
 	
 		$user_languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);

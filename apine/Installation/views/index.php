@@ -61,7 +61,7 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label">Host</label>
-					<input class="form-control" type="text" placeholder="localhost" required data-bind="value: $root.db_host"/>
+					<input class="form-control" type="text" required data-bind="value: $root.db_host"/>
 				</div>
 				<div class="form-group">
 					<label class="control-label">Database Name</label>
@@ -69,11 +69,11 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label">Database Username</label>
-					<input class="form-control" type="text" required placeholder="root" data-bind="value: $root.db_user" />
+					<input class="form-control" type="text" required data-bind="value: $root.db_user" />
 				</div>
 				<div class="form-group">
 					<label class="control-label">Database Password</label>
-					<input class="form-control" type="password" placeholder="*****" data-bind="value: $root.db_pass" />
+					<input class="form-control" type="password" data-bind="value: $root.db_pass" />
 				</div>
 			</div>
 			<div data-bind="if: $root.invalid_step_two">
@@ -248,7 +248,6 @@
 					</dl>
 				</div>
 				<p class="lead">The following folders and files will be created if they do not exist already :</p>
-				<blockquote>The <code>views/</code> folder will be populated with basic views for session managements.</blockquote>
 				<blockquote>Make sure www-data user has writting permissions on the project's directory.</blockquote>
 				<ul>
 					<li>controllers/</li>
@@ -271,7 +270,34 @@
 				</ul>
 			</div>
 			<div class="panel-footer text-right">
-				<button class="btn btn-default" role="button" data-bind="click: $root.apply_settings">Apply configuration & Install</button>
+				<button class="btn btn-default" role="button" data-bind="click: $root.apply_settings">Apply configuration &amp; Install</button>
 			</div>
 		</div>
+	</div>
+	<div class="text-center" data-bind="with: step_finish_visible">
+		<br/>
+		<div class="jumbotron">
+			<h1>Configuration Completed!!</h1>
+			<h2>Your installation of APIne Framework is ready to work.</h2>
+		</div>
+		<br/>
+	
+		<p>You can now install Composer packages using the bundled composer binary with the following command :</p>
+		<p><code>$ php composer.phar install</code></p>
+		<p><strong>OR</strong></p>
+		<p>You can notify APIne not to expect to find Composer packages by adding this line before the run statement in <code>index.php</code>:</p>
+		<p><code>$apine->use_composer(false);</code></p>
+	</div>
+	<div class="text-center" data-bind="with: step_error_visible">
+		<br/>
+		<div class="jumbotron">
+			<h1>Configuration Failed!!</h1>
+			<h2>Installation of APIne Framework has failed.</h2>
+		</div>
+		<br/>
+	
+		<h3>The installation may have failed because:</h3>
+		<p>PHP did not have rights to write on the project's directory.</p>
+		<p><strong>OR</strong></p>
+		<p>The database user did not have permissions to create tables on the database.</p>
 	</div>
