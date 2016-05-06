@@ -3,8 +3,6 @@ APIne Framework Example
 
 An example project showcasing most of the features available on APIne Framework. 
 
-> This example is currently using an undocumented and unstable version of APIne Framework. 
-
 ## Requirements
 
 See [APIne Framework](https://github.com/Youmy001/apine-framework)'s project on GitHub for more information on requirements
