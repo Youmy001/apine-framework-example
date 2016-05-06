@@ -1,0 +1,8 @@
+<h1>{apine_translate:home,title}</h1>
+<p class="lead">{apine_translate:home,description}</p>
+<p>{apine_translate:home,small_one}<br>{apine_translate:home,small_two}</p>
+
+{if:apine_user}
+	<p class="text-right">{apine_user[username]} subscribed on {apine_format_date:apine_user[register_date],datehour}</p>
+	<p class="text-right">{apine_user[username]} visited this page {home_views} time(s).</p>
+{endif}

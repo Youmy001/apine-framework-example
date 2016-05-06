@@ -5,7 +5,7 @@
  * @license MIT
  * @copyright 2015 Tommy Teasdale
  */
-namespace Apine\Controllers\System;
+namespace Apine\Controllers\User;
 
 use \Exception as Exception;
 use Apine\Core as Core;

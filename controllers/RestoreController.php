@@ -5,7 +5,7 @@
  * @license MIT
  * @copyright 2015 Tommy Teasdale
  */
-namespace Apine\Controllers\System;
+namespace Apine\Controllers\User;
 
 use \Exception as Exception;
 use Apine\Application as Application;
@@ -178,7 +178,7 @@ class RestoreController extends MVC\Controller {
 			$this->_view->set_view('session/restore_token');
 			//print "Password reset form";
 			$token = User\Factory\PasswordTokenFactory::create_by_token($params[0]);
-			$this->_view->set_param('token', $token);
+			$this->_view->set_param('token', array("token" => $token->get_token(), "username" => $token->get_user()->get_username(), "email" => $token->get_user()->get_email_password()));
 		} catch (GenericException $e) {
 			// Catch Message to display in the form
 			$this->_view->set_param('error_code', $e->getCode());

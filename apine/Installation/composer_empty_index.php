@@ -10,7 +10,8 @@
 
 ini_set('display_errors', -1);
 
-require_once '.{apine}/Autoloader.php';
+require_once 'vendor/autoload.php';
+
 $loader = new Apine\Autoloader();
 $loader->register();
 

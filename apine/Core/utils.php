@@ -22,6 +22,8 @@ define('APINE_SESSION_ADMIN', 77);
 define('APINE_SESSION_USER', 65);
 define('APINE_SESSION_GUEST', 40);
 define('APINE_SESSION_DELETED', 10);
+define('APINE_PAGINATION_TYPE_PAGINATION', 111);
+define('APINE_PAGINATION_TYPE_PAGER', 110);
 
 /**
  * A split method that supports unicode characters
@@ -233,11 +235,16 @@ function recurse_copy ($src, $dst) {
  */
 function apine_execution_time () {
 
-	global $before;
-	$after = microtime(true) * 1000;
-	$time = number_format($after - $before, 1);
+	static $before;
 	
-	return $time;
+	if (is_null($before)) {
+		$before = microtime(true) * 1000;
+	} else {
+		$after = microtime(true) * 1000;
+		$time = number_format($after - $before, 1);
+		
+		return $time;
+	}
 
 }
 
